@@ -64,19 +64,16 @@ def _lib_include(root):
 def _read(file):
     return open(file, 'rb').read()
 
-try:
-    import _tkinter
-except ImportError:
-    _tkinter = None
+_tkinter = None
 
 
 NAME = 'Pillow'
 VERSION = '1.7.6'
 PIL_VERSION = '1.1.7'
 TCL_ROOT = None
-JPEG_ROOT = None
+JPEG_ROOT = (os.path.join(os.environ['HBPREFIX'], 'lib'), os.path.join(os.environ['HBPREFIX'], 'include'))
 ZLIB_ROOT = None
-TIFF_ROOT = None
+TIFF_ROOT = (os.path.join(os.environ['HBPREFIX'], 'lib'), os.path.join(os.environ['HBPREFIX'], 'include'))
 FREETYPE_ROOT = None
 LCMS_ROOT = None
 
