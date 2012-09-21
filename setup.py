@@ -109,6 +109,13 @@ class pil_build_ext(build_ext):
                 # darwin ports installation directories
                 _add_directory(library_dirs, "/opt/local/lib")
                 _add_directory(include_dirs, "/opt/local/include")
+            else:
+                # Add JPEG_ROOT and TIFF_ROOT before /usr/local/lib
+                for root in (JPEG_ROOT, TIFF_ROOT):
+                    if isinstance(root, type(())):
+                        lib_root, include_root = root
+                        _add_directory(library_dirs, lib_root)
+                        _add_directory(include_dirs, include_root)
             # freetype2 ships with X11
             _add_directory(library_dirs, "/usr/X11/lib")
             _add_directory(include_dirs, "/usr/X11/include")
